@@ -107,28 +107,28 @@ Sample config file:
 ```yaml
 ---
 
-- name: api-checks                                              # Name of this check, must be globally unique
-    description: Check our API services                         # friendly description (appears in the web report)
+- name: api-checks                             # Name of this check, must be globally unique
+    description: Check our API services        # friendly description (appears in the web report)
     method:
-        script: api/api-checks.sh                               # path to the script from Crazy Ivan's root (defined globally)
-    targets:                                                    # target variables to be passed to the script as an environment variable, $target
+        script: api/api-checks.sh              # path to the script from Crazy Ivan's root (defined globally)
+    targets:                                   # target environment variables to be passed to the script, each as $target
         - http://api.example.com/api/v3/                   
         - http://admin.example.com/api/v2/               
         - http://old.example.com/api/v2/                   
-    env:                                                        # optional list of ENVIRONMENT variables to pass to the shell environment
+    env:                                       # optional list of ENVIRONMENT variables to pass to the shell environment
         api-key:       $secret(api-key)                         
         api-username:  svc-crazy-ivan                            
-    slo:                                                        # Service Level Objectives
-        expected: 10s                                           # time this check is expected to take
-        tolerance_high: 25%                                     # latency timing can be +/- the expected slo
-        timeout: 60s                                            # check should die as "failed" if this timeout is reached
-    schedule:                                                   # Schedule to Run on 
-        method: sequential                                      # run against all the above targets one at a time, not in parallel
+    slo:                                       # Service Level Objectives
+        expected: 10s                          # time this check is expected to take
+        tolerance_high: 25%                    # latency timing can be +/- the expected slo
+        timeout: 60s                           # check should die as "failed" if this timeout is reached
+    schedule:                                  # Schedule to Run on 
+        method: sequential                     # run against all the above targets one at a time, not in parallel
         frequency:
-            - random_hourly                                     # don't make the check fall on any particular exact time, run every hour +/- some mins
+            - random_hourly                    # check should run about every hour, but add some randomness to it +/- some mins
         except:
-            - weekends                                          # don't run on the weekends
-    alert: true                                                 # send an alert if this check fails
+            - weekends                         # don't run on the weekends
+    alert: true                                # send an alert if this check fails
 ```
 
  The idea is to be as low overhead on writing scripts as possible so as to encourage others in our team to contribute as well. Two files is all that's needed - an executable and a config. You'll notice we defined three different targets in the config as well, as we realized there are a few other API servers that would benefit from active monitoring. Now we have 18 checks that are running in our environment (six API endpoints are checked across three different API servers). It's starting to feel like we are getting Infrastructure test coverage now, not just monitoring.
