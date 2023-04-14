@@ -143,7 +143,7 @@ Sample config file:
 
  This case was `curl`, a similar example could have been to check the PostgreSQL database using `psql` - no fancy massive monitoring tools required just a command, username and password, and a SQL statement(s) to test the responsiveness of our database in a satisfying way and we're off. If we have a hundred dataase servers, that one script could be used to check them all. Crazy? Crazy simple!!
 
-NOTE: In some ways you might make some comparison between something like [Ansible](https://www.ansible.com) and Tower - and you wouldn't be far off. Putting all the complexity into the DSL (YAML config file) and separating out the exection part to make it as generic as possible, `Crazy Ivan` is just the `Ansible Tower` equivalent, but it's focus is on health checks. Ansible is not great at running external commands outside the DSL and capturing outputs. The whole focus of `Crazy Ivan` is not configuration, it's the way you test drive your environment and services.
+>  :information_source: Note: In some ways you might make some comparison between something like [Ansible](https://www.ansible.com) and Tower - and you wouldn't be far off. Putting all the complexity into the DSL (YAML config file) and separating out the execution part to make it as generic as possible, `Crazy Ivan` is just the `Ansible Tower` equivalent, but it's focus is on health checks. Ansible is not great at running external commands outside the DSL and capturing outputs. The whole focus of `Crazy Ivan` is not configuration, it's the way you test drive your environment and services.
 
 ## Interfacing with Crazy Ivan
 
@@ -209,13 +209,13 @@ Did it cover everything? Of course not, but at the one part of the day, the one 
 
 Additionally deployment of `Crazy Ivan` will be by a container or directly onto a machine. For some this will be a challenge, given the distributed world moving into Kubernetes and all it's ecosystem as a way of deploying apps.
 
-WARNING: `Crazy Ivan` does **NOT** want you to run it in Kubernetes, at least not if you want to use it to also check Kubernetes. Run it in a VM or possibly in the future as a Lambda Function on demand.
+> :no_entry: WARNING: `Crazy Ivan` does **NOT** want you to run it in Kubernetes, at least not if you want to use it to also check Kubernetes. Run it in a VM or possibly in the future as a Lambda Function on demand.
 
 ## Credits and License
 
 Developed by Greg Gallagher (frellus), Copyright 2023 
 
-NOTE: I credit my former collegue Joel, who originally came up with the name "Marvin", for the first check framework tool. I then moved into a different job (the one with Ivan, the story above) and conceptually developed the same solution from scratch when we were given the task of running pro-active infrastructure tests. At some point I re-wrote it in Python, but became critical ifrastructure used to run thousands and thousands of checks globally. Still, I chose to name it `marvin` as a tribute to Joel, even it ended up being a *much* larger scope than the first one.
+> Note: I credit my former collegue Joel, who originally came up with the name "Marvin", for the first check framework tool. I then moved into a different job (the one with Ivan, the story above) and conceptually developed the same solution from scratch when we were given the task of running pro-active infrastructure tests. At some point I re-wrote it in Python, but became critical ifrastructure used to run thousands and thousands of checks globally. Still, I chose to name it `marvin` as a tribute to Joel, even it ended up being a *much* larger scope than the first one.
 
 `Crazy Ivan` is the first time I am creating a `marvin` for public consumption. Other than the overall generic concept, this is a completely original work and fresh approach, as I think the problem is wide ranging, generic and timeless. None of the enterprise monitoring systems we used *in the day* survived to be still in use, and the cloud and SaaS monitoring solutions didn't exist at that time either -- but I hear some whispers that `marvin` is still in use at that place I left 10 years ago.
 
