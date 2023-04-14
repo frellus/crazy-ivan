@@ -40,7 +40,7 @@ Active monitoring becomes even more critical as the scale (and complexity!) of a
 * independent - *works completely out of band of your current monitoring system(s)*
 * higly parallelized - *tests are run in parallel and results are correlated into an overall point-in-time report*
 * performant - *one small VM will get you thousands of checks*
-* fault tolerant - *a failing or hung check doesn't cause the risk other checks being run*
+* fault tolerant - *a failing or hung check doesn't prevent other checks from being run*
 
 ## OK, So ... Why is it Called "Crazy Ivan"?!
 
@@ -181,6 +181,19 @@ To that end, it is **HIGHLY** recommended that you do not run Crazy Ivan inside 
 
 > A small aside: if you don't know about [Elixir](https://elixir-lang.org) or [Phoenix](https://www.phoenixframework.org), stop whatever you are doing and watch this talk, ["The Soul of Erlang and Elixir"](https://youtu.be/JvBT4XBdoUE) by Sasa Juric. It's what originally inspired me to start learning Elixir and about the BEAM, thinking about the implications of such capabilities with true fault tolerance and parallelism it brings.
 
+### Roadmap / TODO List
+
+- [X] Project initiation [**April 13th, 2023**]
+- [ ] Stawman - Crazy Ivan's first automated test running
+- [ ] Exended DSL
+- [ ] Parallel checks, file-based inventory
+- [ ] Unit Testing
+- [ ] Much better documentation
+- [ ] Web UI
+- [ ] CLI tool
+- [ ] Docker image published
+- [ ] Publish Blog Post
+
 ### Backstory
 
 `Crazy Ivan` came about as a project which, conceptionally, I've found myself writing in almost every infrastructure environment I've worked in.
@@ -211,11 +224,13 @@ Additionally deployment of `Crazy Ivan` will be by a container or directly onto 
 
 > :no_entry: WARNING: `Crazy Ivan` does **NOT** want you to run it in Kubernetes, at least not if you want to use it to also check Kubernetes. Run it in a VM or possibly in the future as a Lambda Function on demand.
 
+> :no_entry: WARNING: `Crazy Ivan` is not yet ready for consumption, it is just being built in public. Please look for a dot release to signify it's ready to test and use.
+
 ## Credits and License
 
 Developed by Greg Gallagher (frellus), Copyright 2023 
 
-> Note: I credit my former collegue Joel, who originally came up with the name "Marvin", for the first check framework tool. I then moved into a different job (the one with Ivan, the story above) and conceptually developed the same solution from scratch when we were given the task of running pro-active infrastructure tests. At some point I re-wrote it in Python, but became critical ifrastructure used to run thousands and thousands of checks globally. Still, I chose to name it `marvin` as a tribute to Joel, even it ended up being a *much* larger scope than the first one.
+> :information_source: Note: I credit one of my former collegues, Joel, who originally came up with the name "Marvin", for the first check framework tool. I then moved into a different job (the one with Ivan, the story above) and conceptually developed the same solution from scratch when we were given the task of running pro-active infrastructure tests. At some point I re-wrote it in Python, but became critical ifrastructure used to run thousands and thousands of checks globally. Still, I chose to name it `marvin` as a tribute to Joel, even it ended up being a *much* larger scope than the first one.
 
 `Crazy Ivan` is the first time I am creating a `marvin` for public consumption. Other than the overall generic concept, this is a completely original work and fresh approach, as I think the problem is wide ranging, generic and timeless. None of the enterprise monitoring systems we used *in the day* survived to be still in use, and the cloud and SaaS monitoring solutions didn't exist at that time either -- but I hear some whispers that `marvin` is still in use at that place I left 10 years ago.
 
