@@ -46,17 +46,15 @@ Active monitoring becomes even more critical as the scale (and complexity!) of a
 
 The phrase "Crazy Ivan"[^1] was a cold war term which originated from a manuver the Soviet submarines would do to "clear their **baffles**", [baffles](https://en.wikipedia.org/wiki/Baffles_(submarine)) being the term used to describe the blind spot behind submarines traditionally not covered by sonar.
 
-<img src="crazy_ivan/priv/images/480px-Submarine_baffles.png" alt="A submarine's baffle space" width="25%" height="25%"/>[^2]
+<img src="docs/images/480px-Submarine_baffles.png" alt="A submarine's baffle space" width="25%" height="25%"/>[^2]
 
 Soviet subs would periodically make a sudden, hard turn to check if an enemy attack submarine was stalking it from behind, a favorable firing position for any hunter. The American submarines could only go undetected by shutting off their engines and "going quiet" by drifting, which posed a huge risk of colliding into the forward sub. This was popularized in the 1990 [Tom Clancy](https://en.wikipedia.org/wiki/Tom_Clancy) movie, ["The Hunt for Red October"](https://en.wikipedia.org/wiki/The_Hunt_for_Red_October_(film)) which portrayed this as a paranoid move, almost like a spy afraid of his shadow. In later years it became obsolete with the additon of a towed-array sonar.
 
-<img src="crazy_ivan/priv/images/crazy-ivan-scene.png" alt="Hunt for Red October scene" width="50%" height="50%"/>
+<img src="docs/images/crazy-ivan-scene.png" alt="Hunt for Red October scene" width="50%" height="50%"/>
 
 ---
 
 # A Somewhat Simple Example
-
-Every check requires an executable, and a manifest (configuration). 
 
 Let's say you have an API service, run from an nginx server and dependent on a PostgreSQL database (there's a network in there somewhere too). Now, you might have monitoring from the web server looking at access logs and reporting on a particular pattern. There also could be [Prometheus](https://prometheus.io) metrics the webserver returns showing it's alive and how much activity it has had in terms of operations. Maybe the you are using [pgDash](https://pgdash.io) to monitor database. What about the network? SNMP monitoring on every switch gives us telemety there. Very sophisticated!
 
@@ -100,6 +98,8 @@ exit 0
 ```
 
 Any time a script, program or command executed from `Crazy Ivan` exits with a non-zero exit code, it is assumed to be failed. The optional line that echos `%IVAN%` allows us to pass back a string we can use to later give an explicit description of the failure for summation purposes (described later).
+
+Every check requires an executable, and a corresponding manifest (configuration).
 
 Now we need a control file that Crazy Ivan uses to run that script. It'll define the variable target(s), and pass in environment variables when it's executed. It'll measure the time it takes to run, we can define some expected timing as well so we know even if a check passes if it takes longer than expected we can fail, and we can tell it how often to run.
 
@@ -183,16 +183,20 @@ To that end, it is **HIGHLY** recommended that you do not run Crazy Ivan inside 
 
 ### Roadmap / TODO List
 
-- [X] Project initiation [**April 13th, 2023**]
-- [ ] Stawman - Crazy Ivan's first automated test running
-- [ ] Exended DSL
-- [ ] Parallel checks, file-based inventory
-- [ ] Unit Testing
-- [ ] Much better documentation
-- [ ] Web UI
+- [X] Project initiation [@ *April 13th, 2023*]
+- [ ] MVP - First automated test: `Crazy Ivan` checks itself
+- [ ] Exended DSL for more check types and control
+- [ ] Parallel check execution, file-based inventory
+- [ ] Web UI to show status (visualize reporting, no control)
+- [ ] Secrets store
+- [ ] LiveBook connection to app (?)
+- [ ] Proper Unit Testing
+- [ ] Great documentation
+- [ ] Full Web UI
 - [ ] CLI tool
-- [ ] Docker image published
-- [ ] Publish Blog Post
+- [ ] API (GraphQL and/or REST)
+- [ ] Publish Docker Image, first release
+- [ ] Publish Blog Post(s)
 
 ### Backstory
 
